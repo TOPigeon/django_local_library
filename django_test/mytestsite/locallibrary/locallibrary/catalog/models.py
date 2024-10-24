@@ -10,9 +10,9 @@ class Genre(models.Model):
                 unique=True,
                 help_text="Enter a book genre (e.g. Science Fiction, French Poetry ect.)"
     ) 
-     def __str__(self):
+    def __str__(self):
             return self.name
-     def get_absolute_url(self):
+    def get_absolute_url(self):
             return reverse('genre-detail',args=[str(self.id)])
     class Meta:
                     constraints = [
@@ -38,7 +38,7 @@ class Book(models.Model):
         return reverse('book-detail',args=[str(self.id)])
 
 class BookInstance(models.Model):
-                       """Model representing a specific copy of a book(i.e that can be borrowed from the librar)."""
+    """Model representing a specific copy of a book(i.e that can be borrowed from the librar)."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,help_text="Unique ID for this particular book across whole library")
     book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
     imprint = models.CharField(max_length=200)
